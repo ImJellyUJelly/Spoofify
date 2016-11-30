@@ -7,5 +7,6 @@ namespace KillerApp_ASP.Models
 {
     public class TEstClass
     {
+
     }
 }
