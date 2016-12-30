@@ -19,8 +19,13 @@ namespace KillerApp_ASP.Models
         }
         public Band(string naam, int jaartal)
         {
+            ID = -1;
             Naam = naam;
             OpgerichtJaartal = jaartal;
+        }
+        public Band(int id)
+        {
+            ID = id;
         }
     }
 }

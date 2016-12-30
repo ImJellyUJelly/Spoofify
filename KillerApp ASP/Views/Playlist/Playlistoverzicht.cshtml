@@ -1,0 +1,36 @@
+﻿@model IEnumerable<KillerApp_ASP.Models.Playlist>
+
+
+@{
+    ViewBag.Title = "Playlisten";
+}
+
+<h2>Jouw playlists</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+        <th>
+            Afspeelduur
+        </th>
+        <th>
+            Maker
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afspeelduur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Maker)
+            </td>
+        </tr>
+    }
+</table>

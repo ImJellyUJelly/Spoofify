@@ -1,0 +1,162 @@
+﻿body, html
+{
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #2E2E2E;
+    color: #848484;
+}
+/* Menu */
+.menulinks
+{
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    background-color: #2E2E2E;
+    border-color: black;
+    border-right: solid;
+    border-width: 2px;
+}
+#menurechts
+{
+    position: fixed;
+    right: 0;
+    width: 14.6%;
+    height: 100%;
+    padding-left: 1%;
+    background-color: #2E2E2E;
+    border-color: black;
+    border-left: solid;
+    border-width: 2px;
+}
+.nav
+{
+    margin-top: 25px;
+    margin-left: 25px;
+}
+li:active
+{
+    border-left: solid;
+    border-width: 5px;
+    border-color: darkorange;
+    margin-left: 0px;
+}
+p, a, ul, li
+{
+    color: #848484;
+}
+#textbox
+{
+    border-radius: 25px;
+}
+a:link 
+{
+    color: #848484;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover
+{
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:active 
+{
+    color: #DF3A01;
+}
+li
+{
+    list-style-type: none;
+    margin-left: 5px;
+    color: #848484;
+}
+/* Middle texts */
+H1, H2, H3
+{
+    font-family: "Open Sans", sans-serif ;
+    font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+    color: #DF3A01;
+}   
+#container
+{
+    width: 70%;
+    margin: 0 auto;
+    color: #848484;
+}
+#eersteblok
+{
+    background-color: #2E2E2E;
+    float: left;
+    width: 79%;
+    height: 130px;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    border-color: black;
+    border-bottom: solid;
+    border-width: 2px;    
+    color: #848484;
+}
+#tweedeblok
+{
+    background-color: #2E2E2E;
+    float: left;
+    width: 18%;
+    height: 130px;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    border-color: black;
+    border-right: solid;
+    border-bottom: solid;
+    border-width: 2px;   
+    color: #848484;
+}
+#derdeblok
+{
+    float: left;
+    background-color: #2E2E2E; 
+    width: 97.8%;
+    padding-left: 1%;
+    color: #848484;
+}
+#searchbox
+{
+    margin-top:110px;
+}
+.titel
+{
+    font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+#vierdeblok
+{
+    padding-left: 45%;
+    padding-top: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #424242;
+    border-top: solid;
+    border-width: 1px;
+    color: #848484;
+}
+.picture
+{
+    margin-top: 15px;
+    width: 300px;
+    height: 80px;
+}

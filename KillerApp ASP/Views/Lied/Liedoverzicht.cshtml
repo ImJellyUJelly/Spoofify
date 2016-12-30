@@ -1,0 +1,54 @@
+﻿@model IEnumerable<KillerApp_ASP.Models.Lied>
+
+@{
+    ViewBag.Title = "Liedoverzicht";
+}
+
+<h2>Alle liedjes, everywhere</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Titel
+        </th>
+        <th>
+            Duur
+        </th>
+        <th>
+            Band
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Album
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Band.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genrenaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.Titel)
+            </td>
+            <td>
+                @using (Html.BeginForm("AddToPlaylist", "LiedController", new { id = @item.ID }))
+                {
+                    <button class="btn btn-primary center-block">Add</button>
+                }
+            </td>
+
+        </tr>
+    }
+</table>

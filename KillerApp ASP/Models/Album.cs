@@ -25,5 +25,9 @@ namespace KillerApp_ASP.Models
             Uitgiftejaar = jaar;
             Single = single;
         }
+        public Album(int id)
+        {
+            ID = id;
+        }
     }
 }

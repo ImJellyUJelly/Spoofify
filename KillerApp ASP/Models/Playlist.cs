@@ -10,19 +10,24 @@ namespace KillerApp_ASP.Models
         public int ID { get; set; }
         public string Naam { get; set; }
         public int Afspeelduur { get; set; }
-        List<Lied> liedjes = new List<Lied>();
+        public string Maker { get; set; }
+        public List<Lied> liedjes = new List<Lied>();
 
-        public Playlist(int id, string naam, int afspeelduur)
+        public Playlist(int id, string naam, int afspeelduur, string maker)
         {
+            //de afspeellijsten kunnen nog niet worden opgehaald in de SQL
+            //in de website moet nog een knop komen waardoor de playlists kunnen worden opgehaald zodat ze links inde lijst komen te sstaan.
             ID = id;
             Naam = naam;
             Afspeelduur = afspeelduur;
+            Maker = maker;
         }
-        public Playlist(string naam, int afspeelduur)
+        public Playlist(string naam, int afspeelduur, string maker)
         {
             Naam = naam;
             Afspeelduur = afspeelduur;
             ID = -1;
+            Maker = maker;
         }
         public Playlist(string naam)
         {

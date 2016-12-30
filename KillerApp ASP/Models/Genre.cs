@@ -9,8 +9,9 @@ namespace KillerApp_ASP.Models
     {
         Rock,
         Metal,
-        Heavy_Metal,
-        Post_Hardcore,
+        HeavyMetal,
+        PostHardcore,
+        HardRock,
         Klassiek,
         Jazz,
         Blues,

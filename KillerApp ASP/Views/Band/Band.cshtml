@@ -1,0 +1,29 @@
+﻿@model IEnumerable<KillerApp_ASP.Models.Band>
+
+@{
+    ViewBag.Title = "Band";
+}
+
+<h2>Bands</h2>
+
+<table class="table">
+<tr>
+    <th>
+        Naam
+    </th>
+    <th>
+        Opgericht Jaartal
+    </th>
+</tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpgerichtJaartal)
+        </td>
+    </tr>
+}
+</table>

@@ -7,7 +7,7 @@ namespace KillerApp_ASP.Models
 {
     public class Gebruiker : Account
     {
-        List<Playlist> Afspeellijsten = new List<Playlist>();
+        public List<Playlist> Afspeellijsten = new List<Playlist>();
         public Gebruiker(string naam, string wachtwoord, string email, bool beheerder) : base(naam, wachtwoord, email, beheerder)
         {
             Naam = naam;
