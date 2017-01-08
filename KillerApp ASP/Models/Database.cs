@@ -73,7 +73,7 @@ namespace KillerApp_ASP.Models
                     {
                         using (SqlCommand cmd = new SqlCommand())
                         {
-                            cmd.CommandText = "SELECT L.ID, L.Titel, L.Duur, L.GenreID, B.ID, B.Naam, B.OpgerichtJaartal, A.Titel, A.Uitgiftejaar, A.ID, A.Single FROM Lied L LEFT JOIN Band B on B.ID = L.BandID LEFT JOIN Album A on A.ID = L.AlbumID;";
+                            cmd.CommandText = "SELECT L.ID, L.Titel, L.Duur, L.GenreNaam, B.ID, B.Naam, B.OpgerichtJaartal, A.Titel, A.Uitgiftejaar, A.ID, A.Single FROM Lied L LEFT JOIN Band B on B.ID = L.BandID LEFT JOIN Album A on A.ID = L.AlbumID;";
                             cmd.Connection = conn;
 
                             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -97,15 +97,8 @@ namespace KillerApp_ASP.Models
                                     int Aid = reader.GetInt32(9);
                                     string ATitel = reader.GetString(7);
                                     int AJaar = reader.GetInt32(8);
-                                    bool ASingle;
-                                    if (reader.GetString(10) == "Single")
-                                    {
-                                        ASingle = true;
-                                    }
-                                    else 
-                                    {
-                                        ASingle = false;
-                                    }
+                                    string ASingle = reader.GetString(10);
+
                                     Genre genre = (Genre)Enum.Parse(typeof(Genre), reader.GetString(3));
                                     Band band = new Band(Bnaam, BJaar);
                                     Album album = new Album(Aid, ATitel, AJaar, ASingle);
@@ -151,19 +144,7 @@ namespace KillerApp_ASP.Models
                                 {
                                     string titel = reader.GetString(1);
                                     int jaar = reader.GetInt32(2);
-                                    bool single;
-                                    if (reader.GetString(3) == "Single")
-                                    {
-                                        single = true;
-                                    }
-                                    else if (reader.GetString(3) == "Album")
-                                    {
-                                        single = false;
-                                    }
-                                    else
-                                    {
-                                        single = false;
-                                    }
+                                    string single = reader.GetString(3);
 
                                     albums.Add(new Album(titel, jaar, single));
                                 }
@@ -206,7 +187,15 @@ namespace KillerApp_ASP.Models
                                 {
                                     int id = reader.GetInt32(0);
                                     string naam = reader.GetString(1);
-                                    int duur = reader.GetInt32(2);
+                                    int duur;
+                                    if (reader.IsDBNull(2))
+                                    {
+                                        duur = 0;
+                                    }
+                                    else
+                                    {
+                                        duur = reader.GetInt32(2);
+                                    }
                                     string Gnaam = reader.GetString(3);
 
                                     playlists.Add(new Playlist(id, naam, duur, Gnaam));
@@ -239,7 +228,7 @@ namespace KillerApp_ASP.Models
                     {
                         using (SqlCommand cmd = new SqlCommand())
                         {
-                            cmd.CommandText = "SELECT ID, Titel, Duur, BandID, GenreID, AlbumID FROM Lied WHERE ID = @id";
+                            cmd.CommandText = "SELECT ID, Titel, Duur, BandID, GenreNaam, AlbumID FROM Lied WHERE ID = @id";
                             cmd.Connection = conn;
 
                             cmd.Parameters.AddWithValue("@id", id);
@@ -267,6 +256,158 @@ namespace KillerApp_ASP.Models
                 }
             }
             return null;
+        }
+        public Gebruiker GetGebruikerByNaam(string naam, string wachtwoord)
+        {
+            using (SqlConnection conn = new SqlConnection(connectie))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = "SELECT ID, Naam, Wachtwoord FROM Gebruiker WHERE Naam = @naam AND Wachtwoord = @ww;";
+                            cmd.Connection = conn;
+
+                            cmd.Parameters.AddWithValue("@naam", naam);
+                            cmd.Parameters.AddWithValue("@ww", wachtwoord);
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                int _id = reader.GetInt32(0);
+                                string _naam = reader.GetString(1);
+                                string _wachtwoord = reader.GetString(2);
+                                return new Gebruiker(_id, _naam, _wachtwoord);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exceptions.DataException(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            return null;
+        }
+        public void AddPlaylistToGebruiker(int gebruikerID, string Pnaam)
+        {
+            using (SqlConnection conn = new SqlConnection(connectie))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = "INSERT INTO Playlist (Naam, Maker) VALUES (@naam, @maker)";
+                            cmd.Connection = conn;
+
+                            cmd.Parameters.AddWithValue("@naam", Pnaam);
+                            cmd.Parameters.AddWithValue("@maker", gebruikerID);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exceptions.DataException(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        public List<Vriend> GetFriends(int gebruikerid)
+        {
+            List<Vriend> vrienden = new List<Vriend>();
+            using (SqlConnection conn = new SqlConnection(connectie))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = "SELECT G2.Naam AS Vriend FROM Gebruiker G JOIN Vriend V ON G.ID = V.GebruikerID JOIN Gebruiker G2 ON G2.ID = V.VriendID WHERE G.ID = @gebID";
+
+                            cmd.Parameters.AddWithValue("@gebID", gebruikerid);
+                            cmd.Connection = conn;
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    string naam = reader.GetString(0);
+
+                                    vrienden.Add(new Vriend(naam));
+                                }
+                                return vrienden;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exceptions.DataException(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            return null;
+        }
+        public bool Login(string naam, string wachtwoord)
+        {
+            using (SqlConnection conn = new SqlConnection(connectie))
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand())
+                        {
+                            cmd.CommandText = "SELECT ID, Naam, Wachtwoord FROM Gebruiker WHERE Naam = @naam AND Wachtwoord = @ww;";
+                            cmd.Connection = conn;
+
+                            cmd.Parameters.AddWithValue("@naam", naam);
+                            cmd.Parameters.AddWithValue("@ww", wachtwoord);
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader != null)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exceptions.DataException(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            return false;
         }
     }
 }

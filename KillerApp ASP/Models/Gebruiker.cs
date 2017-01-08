@@ -8,12 +8,20 @@ namespace KillerApp_ASP.Models
     public class Gebruiker : Account
     {
         public List<Playlist> Afspeellijsten = new List<Playlist>();
-        public Gebruiker(string naam, string wachtwoord, string email, bool beheerder) : base(naam, wachtwoord, email, beheerder)
+        public List<Gebruiker> Friends = new List<Gebruiker>();
+        public Gebruiker(int id, string naam, string wachtwoord, string email, bool beheerder) : base(naam, wachtwoord, email, beheerder)
         {
+            ID = id;
             Naam = naam;
             Wachtwoord = wachtwoord;
             Emailadres = email;
             Beheerder = false;
+        }
+        public Gebruiker(int id, string naam, string wachtwoord) : base(id, naam, wachtwoord)
+        {
+            ID = id;
+            Naam = naam;
+            Wachtwoord = wachtwoord;
         }
         public bool AfspeellijstAanmaken(string naam)
         {

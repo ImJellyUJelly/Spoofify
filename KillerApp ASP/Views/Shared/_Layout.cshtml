@@ -23,21 +23,15 @@
             </ul>
             <p class="titel">
                 <u>JOUW AFSPEELLIJSTEN</u>
-                <li>@Html.ActionLink("Jouw afspeellijsten", "Playlistoverzicht", "Playlist")</li>
-            </p>
-        </div>
-    </div>
-    <div id="menurechts">
-        <div class="nav">
-
-            <p class="titel">
-                <u>VRIENDENFEED</u>
+                <ul>
+                    <li>@Html.ActionLink("Jouw afspeellijsten", "Playlistoverzicht", "Playlist")</li>
+                </ul>
             </p>
         </div>
     </div>
     <div id="container">
         <div id="eersteblok">
-            <img src="~/Content/Jelle logo 1.png" class="picture"></a>
+            <img src="~/Content/Jelle logo 1.png" class="picture">
             <p>
                 <i>Gemaakt door Jelle Schräder, klas S21T, voor de vakken SE2 en FUN2.</i>
             </p>
@@ -49,16 +43,25 @@
                 <input type="text" id="textbox" name="search" size="15" />
             </p>
         </div>
+
         <div id="derdeblok">
             @RenderBody()
         </div>
+        <div id="menurechts">
+            <u>VRIENDENFEED</u>
+            <ul>
+                <li>@Html.ActionLink("Vrienden", "Friendfeed", "Friendfeed")</li>
+            </ul>
+        </div>
     </div>
+
     <div id="vierdeblok">
         <i class="material-icons">skip_previous</i>
         <i class="material-icons" id="pauze">pause_circle_outline</i>
         <i class="material-icons">skip_next</i>
         <i class="material-icons">loop</i>
     </div>
+
 </BODY>
 
 </HTML>

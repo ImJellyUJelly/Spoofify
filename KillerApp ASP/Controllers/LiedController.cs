@@ -27,5 +27,6 @@ namespace KillerApp_ASP.Controllers
             pl.liedjes.Add(db.GetLiedById(id));
             return RedirectToAction("Liedoverzicht", "Lied");
         }
+        
     }
 }

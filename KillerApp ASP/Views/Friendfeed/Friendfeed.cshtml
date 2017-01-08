@@ -1,0 +1,23 @@
+﻿@model IEnumerable<KillerApp_ASP.Models.Vriend>
+
+@{
+    ViewBag.Title = "Vrienden";
+}
+
+<h2>Friendfeed</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+        </tr>
+    }
+</table>

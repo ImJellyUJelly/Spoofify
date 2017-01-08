@@ -10,16 +10,16 @@ namespace KillerApp_ASP.Models
         public int ID { get; set; }
         public string Titel { get; set; }
         public int Uitgiftejaar { get; set; }
-        public bool Single { get; set; }
+        public string Single { get; set; }
 
-        public Album(int id, string titel, int jaar, bool single)
+        public Album(int id, string titel, int jaar, string single)
         {
             ID = id;
             Titel = titel;
             Uitgiftejaar = jaar;
             Single = single;
         }
-        public Album(string titel, int jaar, bool single)
+        public Album(string titel, int jaar, string single)
         {
             Titel = titel;
             Uitgiftejaar = jaar;
@@ -28,6 +28,11 @@ namespace KillerApp_ASP.Models
         public Album(int id)
         {
             ID = id;
+        }
+
+        public override string ToString()
+        {
+            return $"{ Titel }, ";
         }
     }
 }

@@ -19,7 +19,7 @@ namespace KillerApp_ASP.Models
             //in de website moet nog een knop komen waardoor de playlists kunnen worden opgehaald zodat ze links inde lijst komen te sstaan.
             ID = id;
             Naam = naam;
-            Afspeelduur = afspeelduur;
+            DuurBerekenen();
             Maker = maker;
         }
         public Playlist(string naam, int afspeelduur, string maker)
@@ -41,6 +41,7 @@ namespace KillerApp_ASP.Models
             if (!liedjes.Contains(lied))
             {
                 liedjes.Add(lied);
+                DuurBerekenen();
             }
             else
             {
@@ -53,12 +54,23 @@ namespace KillerApp_ASP.Models
             try
             {
                 liedjes.Remove(lied);
+                DuurBerekenen();
             }
             catch (Exception)
             {
                 //hier geldt hetzelfde als bovenstaande methode.
                 throw new Exception();
             }
+        }
+
+        private void DuurBerekenen()
+        {
+            int duur = 0;
+            foreach (Lied L in liedjes)
+            {
+                duur += L.Duur;
+            }
+            Afspeelduur = duur;
         }
     }
 }

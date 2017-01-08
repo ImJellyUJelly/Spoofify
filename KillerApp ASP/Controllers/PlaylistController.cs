@@ -22,5 +22,13 @@ namespace KillerApp_ASP.Controllers
             List<Playlist> playlisten = db.ListPlaylists();
             return View(playlisten);
         }
+
+        [HttpPost]
+        public ActionResult AddPlaylist(Gebruiker G, string naam)
+        {
+            db.AddPlaylistToGebruiker(G.ID, naam);
+            List<Playlist> playlisten = db.ListPlaylists();
+            return View(playlisten);
+        }
     }
 }

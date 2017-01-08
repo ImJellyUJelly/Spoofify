@@ -197,7 +197,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BandController.cs" />
+    <Compile Include="Controllers\FriendfeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LiedController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -211,6 +213,7 @@
     <Compile Include="Models\Band.cs" />
     <Compile Include="Models\Beheerder.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Exceptions\DataException.cs" />
     <Compile Include="Models\Gebruiker.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -220,6 +223,7 @@
     <Compile Include="Models\Muziekspeler.cs" />
     <Compile Include="Models\Muzikant.cs" />
     <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\Vriend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -229,6 +233,7 @@
     <Content Include="Content\Jelle logo 1.png" />
     <Content Include="Content\Jelle logo 2.png" />
     <Content Include="Content\Jelle logo 3.png" />
+    <Content Include="Content\Loginpage.css" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -276,18 +281,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -300,6 +294,8 @@
     <Content Include="Views\Playlist\Playlistoverzicht.cshtml" />
     <Content Include="Views\Band\Band.cshtml" />
     <Content Include="Views\Album\Album.cshtml" />
+    <Content Include="Views\Friendfeed\Friendfeed.cshtml" />
+    <Content Include="Views\Authentication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
